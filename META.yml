@@ -1,0 +1,36 @@
+---
+name: Excel-Template-Plus
+version: 0.01
+author:
+  - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
+abstract: An extension to the Excel::Template module
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Excel::Template: 0
+  File::Slurp: 0
+  File::Temp: 0
+  Moose: 0.17
+  Spreadsheet::ParseExcel: 0
+  Template: 0
+  Test::Deep: 0
+build_requires:
+  File::Spec: 0
+  FindBin: 0
+  Test::Exception: 0.21
+  Test::More: 0.47
+provides:
+  Excel::Template::Plus:
+    file: lib/Excel/Template/Plus.pm
+    version: 0.01
+  Excel::Template::Plus::TT:
+    file: lib/Excel/Template/Plus/TT.pm
+    version: 0.01
+  Test::Excel::Template::Plus:
+    file: lib/Test/Excel/Template/Plus.pm
+    version: 0.01
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
