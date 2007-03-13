@@ -15,9 +15,10 @@ WriteMakefile
                            'Template' => '0',
                            'Excel::Template' => '0',
                            'Test::More' => '0.47',
+                           'MooseX::Param' => '0.01',
                            'File::Temp' => '0',
                            'Test::Deep' => '0',
-                           'Moose' => '0.17',
+                           'Moose' => '0.18',
                            'File::Slurp' => '0'
                          }
         )
