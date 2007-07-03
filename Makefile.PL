@@ -10,16 +10,15 @@ WriteMakefile
           'PREREQ_PM' => {
                            'Spreadsheet::ParseExcel' => '0',
                            'Test::Exception' => '0.21',
+                           'IO::String' => '0',
                            'FindBin' => '0',
                            'File::Spec' => '0',
                            'Template' => '0',
                            'Excel::Template' => '0',
                            'Test::More' => '0.47',
                            'MooseX::Param' => '0.01',
-                           'File::Temp' => '0',
                            'Test::Deep' => '0',
-                           'Moose' => '0.18',
-                           'File::Slurp' => '0'
+                           'Moose' => '0.18'
                          }
         )
 ;

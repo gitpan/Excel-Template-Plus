@@ -4,13 +4,12 @@ use Moose;
 use Moose::Util::TypeConstraints;
 
 use FindBin;
-use Template    ();
-use File::Temp  ();
-use File::Slurp ();
+use Template   ();
+use IO::String ();
 
 use Excel::Template;
 
-our $VERSION   = '0.02';
+our $VERSION   = '0.03';
 our $AUTHORITY = 'cpan:STEVAN';
 
 with 'MooseX::Param';
@@ -37,9 +36,27 @@ has 'config' => (
     default  => sub {{}},
 );
 
-## private attributes
+has '_template_object' => (
+    is      => "rw",    
+    isa     => "Template",
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        my $class = $self->template_class;
+        Class::MOP::load_class($class);
+        ($class->isa('Template'))
+            || confess "The template_class must be Template or a subclass of it";
+        $class->new( $self->config )
+    }
+);
 
-has '_tempfile' => (is => 'rw');
+has 'template_class' => (
+    is      => "rw",    
+    isa     => "Str",
+    default => "Template",
+);
+
+## private attributes
 
 has '_excel_template' => (
     is      => 'ro',
@@ -58,37 +75,31 @@ has '_excel_template' => (
 sub _prepare_excel_template {
     my $self = shift;
 
-    my($fh, $tempfile) = File::Temp::tempfile;
+    my $buf;
+    my $fh = IO::String->new(\$buf);
 
-    my $tt = Template->new($self->config);
+    my $tt = $self->_template_object;
     $tt->process(
         $self->template,
         $self->params,
         $fh,
     );
-    close $fh;
-    
-    $self->_tempfile($tempfile);
 
+    $fh->pos(0);
+    
     confess "Template creation failed because : " . $tt->error()
         if $tt->error();    
 
     confess "Template failed to produce any output"
-        unless -s $tempfile;    
+        unless length($buf);
 
-    my $excel_template = eval { Excel::Template->new(filename => $tempfile) };
+    my $excel_template = eval { Excel::Template->new(file => $fh) };
     if ($@) {
-        warn File::Slurp::slurp($tempfile);
-        confess $@;        
+        warn $buf;
+        confess $@;
     }
     
     return $excel_template;
-}
-
-sub DEMOLISH {
-    my $self = shift;
-    unlink $self->_tempfile 
-        if $self->_tempfile && -e $self->_tempfile;
 }
 
 no Moose; no Moose::Util::TypeConstraints; 1;
@@ -133,6 +144,8 @@ L<Excel::Template::Plus> docs for more information.
 =item B<config>
 
 =item B<template>
+
+=item B<template_class>
 
 =item B<params>
 

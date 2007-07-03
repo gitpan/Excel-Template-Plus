@@ -1,6 +1,6 @@
 ---
 name: Excel-Template-Plus
-version: 0.02
+version: 0.03
 author:
   - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
 abstract: An extension to the Excel::Template module
@@ -9,8 +9,7 @@ resources:
   license: http://dev.perl.org/licenses/
 requires:
   Excel::Template: 0
-  File::Slurp: 0
-  File::Temp: 0
+  IO::String: 0
   Moose: 0.18
   MooseX::Param: 0.01
   Spreadsheet::ParseExcel: 0
@@ -24,10 +23,10 @@ build_requires:
 provides:
   Excel::Template::Plus:
     file: lib/Excel/Template/Plus.pm
-    version: 0.02
+    version: 0.03
   Excel::Template::Plus::TT:
     file: lib/Excel/Template/Plus/TT.pm
-    version: 0.02
+    version: 0.03
   Test::Excel::Template::Plus:
     file: lib/Test/Excel/Template/Plus.pm
     version: 0.01
