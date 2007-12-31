@@ -2,23 +2,23 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-          'PL_FILES' => {},
-          'INSTALLDIRS' => 'site',
           'NAME' => 'Excel::Template::Plus',
-          'EXE_FILES' => [],
           'VERSION_FROM' => 'lib/Excel/Template/Plus.pm',
           'PREREQ_PM' => {
-                           'Spreadsheet::ParseExcel' => '0',
-                           'Test::Exception' => '0.21',
-                           'IO::String' => '0',
-                           'FindBin' => '0',
-                           'File::Spec' => '0',
-                           'Template' => '0',
                            'Excel::Template' => '0',
-                           'Test::More' => '0.47',
+                           'File::Spec' => '0',
+                           'FindBin' => '0',
+                           'IO::String' => '0',
+                           'Moose' => '0.18',
                            'MooseX::Param' => '0.01',
+                           'Spreadsheet::ParseExcel' => '0',
+                           'Template' => '0',
                            'Test::Deep' => '0',
-                           'Moose' => '0.18'
-                         }
+                           'Test::Exception' => '0.21',
+                           'Test::More' => '0.47'
+                         },
+          'INSTALLDIRS' => 'site',
+          'EXE_FILES' => [],
+          'PL_FILES' => {}
         )
 ;

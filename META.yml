@@ -1,6 +1,6 @@
 ---
 name: Excel-Template-Plus
-version: 0.03
+version: 0.04
 author:
   - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
 abstract: An extension to the Excel::Template module
@@ -23,14 +23,14 @@ build_requires:
 provides:
   Excel::Template::Plus:
     file: lib/Excel/Template/Plus.pm
-    version: 0.03
+    version: 0.04
   Excel::Template::Plus::TT:
     file: lib/Excel/Template/Plus/TT.pm
-    version: 0.03
+    version: 0.04
   Test::Excel::Template::Plus:
     file: lib/Test/Excel/Template/Plus.pm
     version: 0.01
-generated_by: Module::Build version 0.2805
+generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2
